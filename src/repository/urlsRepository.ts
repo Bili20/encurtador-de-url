@@ -15,6 +15,9 @@ export class UrlsRepository implements IUrlsReposiotory {
   }
 
   async findUrl(url_short: string): Promise<IUrl> {
-    return;
+    const [url] = await knexInstance<IUrl>("urls")
+      .select("*")
+      .where({ url_short: url_short });
+    return url;
   }
 }

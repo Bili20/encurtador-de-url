@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Encurtador de URL</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🔗 Encurtador de URL</h1>
+      <form id="urlForm">
+        <input
+          type="url"
+          id="longUrl"
+          placeholder="Cole sua URL longa aqui"
+          required
+        />
+        <button type="submit">Encurtar URL</button>
+      </form>
+      <div id="result" class="hidden">
+        <p>Sua URL encurtada:</p>
+        <span id="shortUrl" class="short-url"></span>
+        <div class="result-container">
+          <button id="redirectButton" class="btn">Abrir URL</button>
+          <button id="copyButton" class="btn">Copiar</button>
+        </div>
+      </div>
+    </div>
+    <script src="/script.js"></script>
+  </body>
+</html>
