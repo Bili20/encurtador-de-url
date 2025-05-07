@@ -5,14 +5,13 @@ export class urlsService {
 
   async create(url: string) {
     let shortUrl = "";
-    let isUnique = false;
-    while (!isUnique) {
-      shortUrl = this.generateShortCode(6);
-      const existingUrl = await this.urlRepository.findUrl(shortUrl);
-      if (!existingUrl) {
-        isUnique = true;
-      }
+
+    shortUrl = this.generateShortCode(6);
+    const existingUrl = await this.urlRepository.findUrl(shortUrl);
+    if (existingUrl) {
+      throw new Error("Erro ao gerar url.");
     }
+
     if (shortUrl.length) {
       const newUrl = await this.urlRepository.create(url, shortUrl);
       return process.env.BASE_URL + "url/" + newUrl.url_short;
@@ -21,6 +20,8 @@ export class urlsService {
 
   async findByShortUrl(shortUrl: string) {
     const url = await this.urlRepository.findUrl(shortUrl);
+
+    await this.urlRepository.addClick(url.id);
     return url.original_url;
   }
 

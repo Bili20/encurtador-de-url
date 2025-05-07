@@ -6,7 +6,6 @@ const redirectButton = document.getElementById(
   "redirectButton"
 ) as HTMLButtonElement;
 const copyButton = document.getElementById("copyButton") as HTMLButtonElement;
-let code: string;
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -25,7 +24,6 @@ form.addEventListener("submit", async (e) => {
 
     resultDiv.classList.remove("hidden");
     shortUrlSpan.textContent = data;
-    code = data.split("/").pop();
 
     longUrlInput.value = "";
   } catch (e: any) {
@@ -36,7 +34,7 @@ form.addEventListener("submit", async (e) => {
 redirectButton.addEventListener("click", async () => {
   try {
     window.open(
-      process.env.BASE_URL + `url/${code}`,
+      shortUrlSpan.textContent || "",
       "_blank",
       "noopener,noreferrer"
     );

@@ -41,7 +41,6 @@ var resultDiv = document.getElementById("result");
 var shortUrlSpan = document.getElementById("shortUrl");
 var redirectButton = document.getElementById("redirectButton");
 var copyButton = document.getElementById("copyButton");
-var code;
 form.addEventListener("submit", function (e) { return __awaiter(_this, void 0, void 0, function () {
     var longUrl, response, data, e_1;
     return __generator(this, function (_a) {
@@ -66,7 +65,6 @@ form.addEventListener("submit", function (e) { return __awaiter(_this, void 0, v
                     throw new Error(data.error || "Erro desconhecido");
                 resultDiv.classList.remove("hidden");
                 shortUrlSpan.textContent = data;
-                code = data.split("/").pop();
                 longUrlInput.value = "";
                 return [3 /*break*/, 5];
             case 4:
@@ -80,7 +78,7 @@ form.addEventListener("submit", function (e) { return __awaiter(_this, void 0, v
 redirectButton.addEventListener("click", function () { return __awaiter(_this, void 0, void 0, function () {
     return __generator(this, function (_a) {
         try {
-            window.open(process.env.BASE_URL + "url/".concat(code), "_blank", "noopener,noreferrer");
+            window.open(shortUrlSpan.textContent || "", "_blank", "noopener,noreferrer");
         }
         catch (e) {
             resultDiv.innerHTML = "<p class=\"error\">".concat(e.message, "</p>");
