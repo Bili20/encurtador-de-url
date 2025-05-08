@@ -5,6 +5,8 @@ import path from "path";
 import cors from "cors";
 import redisClient from "./config/db/redis";
 import { RateLimiter } from "./middlewares/rateLimit";
+import "./jobs/cachesPopular";
+
 const app = express();
 app.use(cors());
 app.use(RateLimiter.limiter());
