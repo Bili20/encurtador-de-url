@@ -1,3 +1,7 @@
+import { initializedOtel } from "./config/observability/instrumentation";
+
+initializedOtel();
+
 import express from "express";
 import { knexInstance } from "./config/db/configDb";
 import { routes } from "./routes/index.routes";
